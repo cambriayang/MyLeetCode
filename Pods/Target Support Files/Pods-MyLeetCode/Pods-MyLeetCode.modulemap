@@ -1,0 +1,6 @@
+framework module Pods_MyLeetCode {
+  umbrella header "Pods-MyLeetCode-umbrella.h"
+
+  export *
+  module * { export * }
+}
