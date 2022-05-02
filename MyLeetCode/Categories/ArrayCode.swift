@@ -16,9 +16,9 @@ class ArrayCode: LeetCode {
 //        let _=maxProfit([7,1,5,3,6,4])
 //        let _=maxProfitII([7,1,5,3,6,4])
         var source=[4,3,2,7,8,10,11,18,9,10,76,1,6]
-//        let _=bubleSort(source: &source)
+//        bubleSort(source: &source)
         print("quickSort before: \(source)")
-        let _=quickSort(src: &source, left: 0, right: source.count-1)
+        quickSort(src: &source, left: 0, right: source.count-1)
         print("quickSort after: \(source)")
     }
 }
