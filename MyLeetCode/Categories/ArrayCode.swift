@@ -15,16 +15,86 @@ class ArrayCode: LeetCode {
 //        let _=findTheMidNumber([4,3,2,7,8,10,11,18,9])
 //        let _=maxProfit([7,1,5,3,6,4])
 //        let _=maxProfitII([7,1,5,3,6,4])
-        var source=[4,3,2,7,8,10,11,18,9,10,76,1,6]
+//        var source=[4,3,2,7,8,10,11,18,9,10,76,1,6]
+//        print("quickSort before: \(source)")
+//        quickSort(src: &source, left: 0, right: source.count-1)
+//        print("quickSort after: \(source)")
+//        let _=binarySearch(insert: 14, into: source)
 //        bubleSort(source: &source)
-        print("quickSort before: \(source)")
-        quickSort(src: &source, left: 0, right: source.count-1)
-        print("quickSort after: \(source)")
+        let _=findLongestIncrementSequenceWithDP(src: [10,9,2,5,3,7,101,18,20])
+        let _=findLongestIncrementSequence(src: [10,9,2,5,3,7,101,18,20])
     }
 }
 
 
 ///Methods
+//二分查找法（已经排好序），返回插入的index，并不做插入
+func binarySearch(insert target: Int, into src: [Int]) -> Int {
+    var left=0, right=src.count-1
+    
+    while left<=right {
+        let mid=(left+right)/2
+        let midValue=src[mid]
+        
+        if target==midValue {
+            return mid
+        } else if target>midValue {
+            left=mid+1
+        } else {
+            right=mid-1
+        }
+    }
+    
+//    print("\(target) Should insert at Index: \(left)")
+    return left;
+}
+
+//寻找最长上升子序列（不需要连续),10，9，2，5，3，7，101，18，20->2,3,7,18,20
+func findLongestIncrementSequenceWithDP(src: [Int]) -> Int {
+    if src.count<=0 {
+        return 0
+    }
+    
+    var rls=1
+    
+    var DP = Array.init(repeating: 1, count: src.count)
+    
+    for i in 1..<src.count {
+        for j in 0..<i {
+            if src[j]<src[i] {
+                DP[i]=max(DP[i], DP[j]+1)
+            }
+        }
+        
+        rls=max(rls, DP[i])
+    }
+    
+    print("\(src)'s LIS count is \(rls)")
+    return rls
+}
+
+//寻找最长上升子序列（不需要连续),10，9，2，5，3，7，101，18，20->2,3,7,18,20
+func findLongestIncrementSequence(src: [Int]) -> [Int] {
+    if src.count<=0 {
+        return []
+    }
+    
+    var rls=[Int]()
+    
+    for i in 0..<src.count {
+        let index=binarySearch(insert: src[i], into: rls)
+        
+        rls.insert(src[i], at: index)
+        
+        if index+1<rls.count {
+            rls.remove(at: index+1)
+        }
+    }
+    
+    print("\(src)'s LIS is \(rls)")
+    return rls
+}
+    
 func bubleSort(source: inout [Int]) {
     print("bubleSort before: \(source)")
     for i in 0..<source.count {
@@ -70,13 +140,6 @@ func quickSort(src: inout [Int], left: Int, right: Int) {
         quickSort(src: &src, left: left, right: partionIndex-1)
         quickSort(src: &src, left: partionIndex+1, right: right)
     }
-}
-
-//寻找最长上升子序列（不需要连续),10，9，2，5，3，7，101，18，20->2,3,7,18,20
-func findLongestIncreasingSubsequence(source: [Int]) -> [Int] {
-    let lis = [Int]()
-    
-    return lis
 }
 
 func findTheMidNumber(_ data: [Int]) -> [Int] {
