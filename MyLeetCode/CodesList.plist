@@ -7,5 +7,6 @@
 	<string>LinkListCode</string>
 	<string>TreeCode</string>
 	<string>GreedyCode</string>
+	<string>DynamicProgramingCode</string>
 </array>
 </plist>

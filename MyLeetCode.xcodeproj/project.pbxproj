@@ -23,6 +23,7 @@
 		3A06007B281D2E34004D8C27 /* GreedyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A06007A281D2E34004D8C27 /* GreedyCode.swift */; };
 		3A06007F281D302F004D8C27 /* LeetCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A06007E281D302F004D8C27 /* LeetCode.swift */; };
 		3A060082281E3F2C004D8C27 /* CodesList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A060081281E3F2C004D8C27 /* CodesList.plist */; };
+		3A060084282C0894004D8C27 /* DynamicProgramingCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A060083282C0894004D8C27 /* DynamicProgramingCode.swift */; };
 		93BD8A828E532051AED0C96E /* Pods_MyLeetCode_MyLeetCodeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DB2A998069CBADD9DA5BAA8 /* Pods_MyLeetCode_MyLeetCodeUITests.framework */; };
 		9FBBD313BDE9958F3BA04D96 /* Pods_MyLeetCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 686224874E7F5E8D3FCAFDAD /* Pods_MyLeetCode.framework */; };
 /* End PBXBuildFile section */
@@ -66,6 +67,7 @@
 		3A06007A281D2E34004D8C27 /* GreedyCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreedyCode.swift; sourceTree = "<group>"; };
 		3A06007E281D302F004D8C27 /* LeetCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeetCode.swift; sourceTree = "<group>"; };
 		3A060081281E3F2C004D8C27 /* CodesList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = CodesList.plist; sourceTree = "<group>"; };
+		3A060083282C0894004D8C27 /* DynamicProgramingCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicProgramingCode.swift; sourceTree = "<group>"; };
 		4DB2A998069CBADD9DA5BAA8 /* Pods_MyLeetCode_MyLeetCodeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyLeetCode_MyLeetCodeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F88CD988C9DD9A2590F5FC /* Pods_MyLeetCodeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyLeetCodeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5873E24A1EBE4ED4497BDF19 /* Pods-MyLeetCodeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyLeetCodeTests.release.xcconfig"; path = "Target Support Files/Pods-MyLeetCodeTests/Pods-MyLeetCodeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -172,7 +174,6 @@
 				BCC9A3E0FC778624F4BBDB2C /* Pods-MyLeetCodeTests.debug.xcconfig */,
 				5873E24A1EBE4ED4497BDF19 /* Pods-MyLeetCodeTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -184,6 +185,7 @@
 				041C01EF25022F9500E6CC95 /* LinkListCode.swift */,
 				041C01F1250231C300E6CC95 /* TreeCode.swift */,
 				3A06007A281D2E34004D8C27 /* GreedyCode.swift */,
+				3A060083282C0894004D8C27 /* DynamicProgramingCode.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -404,6 +406,7 @@
 			files = (
 				041C01F2250231C300E6CC95 /* TreeCode.swift in Sources */,
 				041C01EC2501C42F00E6CC95 /* ArrayCode.swift in Sources */,
+				3A060084282C0894004D8C27 /* DynamicProgramingCode.swift in Sources */,
 				041C01F025022F9500E6CC95 /* LinkListCode.swift in Sources */,
 				041C01C024FE566D00E6CC95 /* ViewController.swift in Sources */,
 				041C01BC24FE566D00E6CC95 /* AppDelegate.swift in Sources */,
