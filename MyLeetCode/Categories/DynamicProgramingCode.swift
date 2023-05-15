@@ -11,15 +11,19 @@ import Foundation
 class DynamicProgramingCode: LeetCode {
     override func run() {
         super.run()
+
+//        let path = [
+//            [1, 1, 3],
+//            [2, 3, 2],
+//            [5, 1, 2],
+//            [10, 1, 5],
+//        ]
+//
+//        let _ = findMinimumPath(inPath: path)
         
-        let path=[
-            [1, 1, 3],
-            [2, 3, 2],
-            [5, 1, 2],
-            [10, 1, 5],
-        ]
+        let coins = [1,6,7]
         
-        let _=findMinimumPath(inPath: path)
+        let _ = coinsChangeOrGotoFloorMinStep(coins: coins, change: 30)
     }
 }
 
@@ -59,4 +63,38 @@ func findMinimumPath(inPath path: [[Int]]) -> Int {
     
     print("findMinimumPath is: \(rls)")
     return rls;
+}
+
+/*
+ *零钱兑换:有若干面值的硬币，如：[1,6,7] , 求组成特定面值，如：30，的最小硬币数。
+ *类似到达特定楼层比如30层，step可选1,6,7，最少需要多少次
+ */
+func coinsChangeOrGotoFloorMinStep(coins: [Int], change: Int) -> Int {
+    var result = -1
+    
+    if coins.count<=0 || change<=0 {
+        return result
+    }
+    
+    var DP = [Int](repeating: Int.max, count: change+1)
+    DP[0] = 0
+    
+    for i in 1...change {
+        for j in 0..<coins.count {
+            if i>=coins[j] {
+                DP[i]=min(DP[i], DP[i-coins[j]]+1)
+            }
+        }
+    }
+    
+    if DP[change]>0 {
+        result=DP[change]
+    
+        print("coinsChangeOrGotoFloorMinStep is: \(result)")
+        return result
+    }
+    
+    print("coinsChangeOrGotoFloorMinStep cannot be found")
+    
+    return result;
 }
