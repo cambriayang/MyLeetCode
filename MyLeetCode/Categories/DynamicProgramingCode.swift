@@ -11,19 +11,25 @@ import Foundation
 class DynamicProgramingCode: LeetCode {
     override func run() {
         super.run()
-
-//        let path = [
-//            [1, 1, 3],
-//            [2, 3, 2],
-//            [5, 1, 2],
-//            [10, 1, 5],
-//        ]
+        
+        //        let path = [
+        //            [1, 1, 3],
+        //            [2, 3, 2],
+        //            [5, 1, 2],
+        //            [10, 1, 5],
+        //        ]
+        //
+        //        let _ = findMinimumPath(inPath: path)
+        
+//        let coins = [1,6,7]
 //
-//        let _ = findMinimumPath(inPath: path)
+//        let _ = coinsChangeOrGotoFloorMinStep(coins: coins, change: 30)
+//        let word1 = "horse"
+//        let word2 = "ros"
+        let word1 = "intention"
+        let word2 = "execution"
         
-        let coins = [1,6,7]
-        
-        let _ = coinsChangeOrGotoFloorMinStep(coins: coins, change: 30)
+        let _ = minEditDistanc(word1: word1, word2: word2)
     }
 }
 
@@ -89,7 +95,7 @@ func coinsChangeOrGotoFloorMinStep(coins: [Int], change: Int) -> Int {
     
     if DP[change]>0 {
         result=DP[change]
-    
+        
         print("coinsChangeOrGotoFloorMinStep is: \(result)")
         return result
     }
@@ -98,3 +104,47 @@ func coinsChangeOrGotoFloorMinStep(coins: [Int], change: Int) -> Int {
     
     return result;
 }
+
+/*
+ *Edit Distance
+ *word1(m)->word2(n)需要的最短步骤
+ *horse->ros, intention->nation
+ */
+func minEditDistanc(word1: String, word2: String) -> Int {
+    var result = -1;
+    
+    let m = word1.count
+    let n = word2.count
+    
+    //Initial the two-dimension array
+    var dp = [[Int]](repeating: [Int](repeating: 0, count: n+1), count: m+1)
+    
+    print(dp)
+    
+    for i in 0...m {
+        //第一个单词前面的i个字符，第二个单词有0个字符，那需要匹配多少个次呢？当然是第一个i个字符全部删除
+        dp[i][0]=i
+    }
+    
+    //同理
+    for j in 0...n {
+        dp[0][j]=j
+    }
+    
+    for i in 1...m {
+        for j in 1...n {
+            if word1[i-1]==word2[j-1] {
+                dp[i][j]=dp[i-1][j-1]
+            } else {
+                //+1是肯定需要操作一次，然后是取3个中间的最小值：删除word2的j，删除word1的i个字符，两个都需要删除，重新替换
+                //这就是这3个比较的由来，由于是轮换对称的，不必纠结删除哪个，新增另一个word的字符，等价的
+                dp[i][j]=1+min(dp[i][j-1], dp[i-1][j], dp[i-1][j-1])
+            }
+        }
+    }
+    
+    result=dp[m][n]
+    print("minEditDistanc in \(word1) & \(word2) is: \(result)")
+    return result;
+}
+
