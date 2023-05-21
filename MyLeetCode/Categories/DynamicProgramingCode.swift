@@ -24,10 +24,10 @@ class DynamicProgramingCode: LeetCode {
 //        let coins = [1,6,7]
 //
 //        let _ = coinsChangeOrGotoFloorMinStep(coins: coins, change: 30)
-//        let word1 = "horse"
-//        let word2 = "ros"
-        let word1 = "intention"
-        let word2 = "execution"
+        let word1 = "horse"
+        let word2 = "ros"
+//        let word1 = "intention"
+//        let word2 = "execution"
         
         let _ = minEditDistanc(word1: word1, word2: word2)
     }
@@ -119,8 +119,7 @@ func minEditDistanc(word1: String, word2: String) -> Int {
     //Initial the two-dimension array
     var dp = [[Int]](repeating: [Int](repeating: 0, count: n+1), count: m+1)
     
-    print(dp)
-    
+
     for i in 0...m {
         //第一个单词前面的i个字符，第二个单词有0个字符，那需要匹配多少个次呢？当然是第一个i个字符全部删除
         dp[i][0]=i
