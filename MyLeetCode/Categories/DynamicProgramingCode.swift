@@ -21,7 +21,7 @@ class DynamicProgramingCode: LeetCode {
         //
         //        let _ = findMinimumPath(inPath: path)
         
-//        let coins = [1,6,7]
+//        let coins = [1,6,7 ]
 //
 //        let _ = coinsChangeOrGotoFloorMinStep(coins: coins, change: 30)
         let word1 = "horse"
