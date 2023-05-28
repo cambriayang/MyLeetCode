@@ -51,6 +51,9 @@ class FloodFillandIslands: LeetCode {
 //    dfs(&grid, i, j + 1)
 //}
 
+/*
+ *给定一个1（陆地）和0（水）组成的二维网络，计算岛屿数量，一个岛被水包围，并且它是通过水平方向或者垂直方向上相邻的陆地连接而成的。你可以假设网格的四个边均被水包围。
+ */
 func numIslands(_ grid: [[Int]]) -> Int {
     var result = -1;
     //不动原数组
