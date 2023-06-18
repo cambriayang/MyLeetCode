@@ -12,26 +12,104 @@ class DynamicProgramingCode: LeetCode {
     override func run() {
         super.run()
         
-        //        let path = [
-        //            [1, 1, 3],
-        //            [2, 3, 2],
-        //            [5, 1, 2],
-        //            [10, 1, 5],
-        //        ]
-        //
-        //        let _ = findMinimumPath(inPath: path)
-        
+//        let path = [
+//            [1, 1, 3],
+//            [2, 3, 2],
+//            [5, 1, 2],
+//            [10, 1, 5],
+//        ]
+//
+//        let _ = findMinimumPath(inPath: path)
+//
 //        let coins = [1,6,7 ]
 //
 //        let _ = coinsChangeOrGotoFloorMinStep(coins: coins, change: 30)
-        let word1 = "horse"
-        let word2 = "ros"
+//        let word1 = "horse"
+//        let word2 = "ros"
 //        let word1 = "intention"
 //        let word2 = "execution"
+//
+//        let _ = minEditDistanc(word1: word1, word2: word2)
         
-        let _ = minEditDistanc(word1: word1, word2: word2)
+        let triangle = [
+            [2],
+            [3, 4],
+            [6, 5, 7],
+            [4, 1, 8, 3],
+        ]
+
+        let _ = minimumTotal(triangle)
     }
 }
+
+/*
+ *给定一个三角形数组，找到从上到下最小的sum的路径
+ *[2]
+ *[3, 4]
+ *[6, 5, 7]
+ *[4, 1, 8, 3]
+ *最小的path sum is 11（i.e. 2+3+5+1=11）
+ */
+func minimumTotal(_ triangle: [[Int]]) -> Int {
+    var path = ""
+    var rlt = minimumTotalHelper(triangle, 0, 0, &path)
+    
+    print("rls is \(rlt)")
+    
+    return rlt;
+}
+
+func minimumTotalHelper(_ triangle: [[Int]], _ row: Int, _ col: Int, _ path: inout String) -> Int {
+    //terminator
+    if row == triangle.count - 1 {
+        return triangle[row][col]
+    }
+        
+    //process
+    
+    //drill down
+    let left = minimumTotalHelper(triangle, row+1, col, &path)
+    let right = minimumTotalHelper(triangle, row+1, col+1, &path)
+    
+    //clear states
+    //no need here
+    
+    return triangle[row][col] + min(left, right)
+}
+
+//func minimumTotal(inTriangle triangle: [[Int]]) -> Int {
+//    if (triangle.count == 0 || triangle[0].count == 0) {
+//        return 0;
+//    }
+//
+//    var pathStr = "";
+//    var sum = 0;
+//
+//    return _dfs(inTriangle: triangle, inRow: 0, inCol: 0, path: &pathStr, sum: &sum);
+//}
+//
+//func _dfs(inTriangle triangle: [[Int]], inRow i: Int, inCol j: Int, path: inout String, sum: inout Int) -> Int {
+//    //terminator
+//    if i == triangle.count-1 {
+//        path += triangle[i][j].description + "#";
+//        sum += triangle[i][j];
+//        print(path + "with sum: \(sum))");
+//        return sum;
+//    }
+//
+//    //process
+//    path += triangle[i][j].description + "->";
+//    sum += triangle[i][j];
+//
+//    //drill down
+//    var leftResult = _dfs(inTriangle: triangle, inRow: i+1, inCol: j, path: &path, sum: &sum);
+//    var rightResult = _dfs(inTriangle: triangle, inRow: i+1, inCol: j+1, path: &path, sum: &sum);
+//
+//    //clear states
+//    //no need here
+//
+//    return sum;
+//}
 
 /*
  *一个Int型的二维数组（m*n），>0，每个值表明距离，左上角记为【0,0】，右下角记为【m，n】,每个数字只能向右或者向下进行，求出从【0，0】->【m,n】的最小路径。
