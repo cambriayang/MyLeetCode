@@ -38,7 +38,8 @@ class DynamicProgramingCode: LeetCode {
             [4, 1, 8, 3],
         ]
 
-        let _ = minimumTotal(triangle)
+//        let _ = minimumTotal(triangle)
+        let _ = minimumTotalByDP(triangle)
     }
 }
 
@@ -50,6 +51,21 @@ class DynamicProgramingCode: LeetCode {
  *[4, 1, 8, 3]
  *最小的path sum is 11（i.e. 2+3+5+1=11）
  */
+func minimumTotalByDP(_ triangle: [[Int]]) -> Int {
+    let rows = triangle.count
+    var dp = triangle.last!
+    
+    for i in stride(from: rows - 2, through: 0, by: -1) {
+        for j in 0...i {
+            dp[j] = triangle[i][j] + min(dp[j], dp[j+1])
+        }
+    }
+    
+    print(dp[0])
+    
+    return dp[0]
+}
+
 func minimumTotal(_ triangle: [[Int]]) -> Int {
     var path = ""
     var rlt = minimumTotalHelper(triangle, 0, 0, &path)
