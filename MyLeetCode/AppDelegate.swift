@@ -6,8 +6,6 @@
 //  Copyright © 2020 Argost. All rights reserved.
 //
 
-//LeetCode
-
 import UIKit
 
 @UIApplicationMain
