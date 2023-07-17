@@ -53,15 +53,18 @@ class DynamicProgramingCode: LeetCode {
  */
 func minimumTotalByDP(_ triangle: [[Int]]) -> Int {
     let rows = triangle.count
+    //由于最后一行是最长的，三角矩阵的特点
     var dp = triangle.last!
     
     for i in stride(from: rows - 2, through: 0, by: -1) {
         for j in 0...i {
+            print("minimumTotalByDP is \(triangle[i][j]) \(dp[j]) \(dp[j+1])")
             dp[j] = triangle[i][j] + min(dp[j], dp[j+1])
+            print(dp)
         }
     }
     
-    print(dp[0])
+    print("minimumTotalByDP is \(dp[0])")
     
     return dp[0]
 }
