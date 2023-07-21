@@ -71,7 +71,7 @@ func minimumTotalByDP(_ triangle: [[Int]]) -> Int {
 
 func minimumTotal(_ triangle: [[Int]]) -> Int {
     var path = ""
-    var rlt = minimumTotalHelper(triangle, 0, 0, &path)
+    let rlt = minimumTotalHelper(triangle, 0, 0, &path)
     
     print("rls is \(rlt)")
     
