@@ -21,11 +21,88 @@ class ArrayCode: LeetCode {
 //        print("quickSort after: \(source)")
 //        let _=binarySearch(insert: 14, into: source)
 //        bubleSort(source: &source)
-        let _=findLongestIncrementSequenceWithDP(src: [10,9,2,5,3,7,101,18,20])
-        let _=findLongestIncrementSequence(src: [10,9,2,5,3,7,101,18,20])
+//        let _=findLongestIncrementSequenceWithDP(src: [10,9,2,5,3,7,101,18,20])
+//        let _=findLongestIncrementSequence(src: [10,9,2,5,3,7,101,18,20])
+//        柱状图接水(暴力法)
+//        let _ = getWaterByViolence(src: [3, 1, 2, 4])
+//        柱状图接水(暴力法)
+        let _ = getWaterBy2P(arr: [3, 1, 2, 4])
     }
 }
 
+//柱状图接水(左右指针法)，时间复杂度O(n2)，空间复杂度O(1)
+func getWaterBy2P(arr: [Int]) -> Int {
+    var rt = 0
+    
+    if arr.isEmpty || arr.count < 3 {
+        return rt
+    }
+    
+    var leftMax = arr[0]
+    var rightMax = arr[arr.count-1]
+    
+    var leftP = 1
+    var rightP = arr.count-2
+    
+    while leftP <= rightP {
+        if leftMax <= rightMax {
+//            rt += leftMax-arr[leftP] > 0 ? leftMax-arr[leftP] : 0
+            rt += max(0, leftMax-arr[leftP])
+            leftMax = max(leftMax, arr[leftP])
+            
+            leftP+=1
+        } else {
+//            rt += rightMax-arr[rightP] > 0 ? rightMax-arr[rightP] : 0
+            rt += max(0, rightMax-arr[rightP])
+            rightMax = max(rightMax, arr[rightP])
+            
+            rightP -= 1
+        }
+    }
+    
+    print("\(arr)'s 柱状图接水(左右指针法) is \(rt)")
+
+    return rt
+}
+
+
+//柱状图接水(暴力法)，时间复杂度O(n2)，空间复杂度O(1)
+func getWaterByViolence(src: [Int]) -> Int {
+    var rt = 0
+    
+    if src.isEmpty || src.count < 3 {
+        return rt
+    }
+    
+    
+    for i in 1..<src.count-1 {
+        var leftMax = src[0]
+        
+//        获取作则最大值
+        for j in 0..<i {
+            if src[j] > leftMax {
+                leftMax = src[j]
+            }
+        }
+        
+//        获取右侧最大值
+        var rightMax = src[src.count-1]
+        
+        for k in (i+1...src.count-1).reversed() {
+            if src[k] > rightMax {
+                rightMax = src[k]
+            }
+        }
+        
+//        左右两个大值中的较小者和src[i]的差值就是当条柱状图所能储水的值
+//        且如果他们都比src[i]小的话就储不了水
+        rt += max(0, min(leftMax, rightMax) - src[i])
+    }
+    
+    print("\(src)'s 柱状图接水(暴力法) is \(rt)")
+
+    return rt
+}
 
 ///Methods
 //二分查找法（已经排好序），返回插入的index，并不做插入
