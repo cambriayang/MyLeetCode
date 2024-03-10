@@ -12,7 +12,7 @@ class LeetCode : NSObject {
     func printSeperator() -> Void {
         let myFullName = NSStringFromClass(type(of: self))
         let myName = myFullName.components(separatedBy: ".").last!
-        print("========================LeetCode: \(myName)=========================")
+        print("\n===\(myName)===\n")
     }
     
     required override init() {

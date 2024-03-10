@@ -9,7 +9,7 @@
 import UIKit
 
 class ArrayCode: LeetCode {
-    override func run() {
+    override func run() { 
         super.run()
         
 //        let _=findTheMidNumber([4,3,2,7,8,10,11,18,9])
