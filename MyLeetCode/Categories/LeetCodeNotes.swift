@@ -16,13 +16,40 @@ class LeetCodeNotes : LeetCode {
         
         let _ = solution.trap([3, 1, 2, 4])
         
-        var nums = [0,0,1,1,1,2,2,3,3,4]
-        let _ = solution.removeDuplicates1(&nums)
-        let _ = solution.removeDuplicates2(nums: &nums)
+        var nums = [0,0,1,1,1,1,2,3,3]
+//        let _ = solution.removeDuplicates1(&nums)
+//        let _ = solution.removeDuplicates2(nums: &nums)
+        let _ = solution.removeDuplicates3(nums: &nums)
     }
 }
 
 class Solution {
+    func removeDuplicates3(nums: inout [Int]) -> Int {
+        let len = nums.count
+        
+        if len <= 2 {
+            return len
+        }
+        
+        var rt = 0
+        
+        var slow = 2
+        
+        //slow是需要替换的位置，那么slow-2自然就是需要保留的位置
+        for fast in 2..<len {
+            if nums[fast] != nums[slow - 2] {
+                nums[slow] = nums[fast]
+                slow = slow + 1
+            }
+        }
+                
+        rt = slow
+        
+        print("不同的元素数组是3：\(nums) num is: \(rt)")
+        
+        return rt
+    }
+    
     func removeDuplicates2(nums: inout [Int]) -> Int {
         if nums.count < 2 {
             return nums.count
@@ -34,7 +61,7 @@ class Solution {
         var slow = 1
         
         for fast in 1..<nums.count {
-            if nums[fast] > nums[fast-1] {
+            if nums[fast] > nums[slow-1] {
                 nums[slow] = nums[fast]
                 slow = slow + 1
             }
