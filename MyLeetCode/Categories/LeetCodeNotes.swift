@@ -15,10 +15,66 @@ class LeetCodeNotes : LeetCode {
         let solution = Solution()
         
         let _ = solution.trap([3, 1, 2, 4])
+        
+        var nums = [0,0,1,1,1,2,2,3,3,4]
+        let _ = solution.removeDuplicates1(&nums)
+        let _ = solution.removeDuplicates2(nums: &nums)
     }
 }
 
 class Solution {
+    func removeDuplicates2(nums: inout [Int]) -> Int {
+        if nums.count < 2 {
+            return nums.count
+        }
+        
+        var rt = 0
+        
+        //直接从第二个元素开始遍历
+        var slow = 1
+        
+        for fast in 1..<nums.count {
+            if nums[fast] > nums[fast-1] {
+                nums[slow] = nums[fast]
+                slow = slow + 1
+            }
+        }
+        
+        rt = slow
+        
+        print("不同的元素数组是2：\(nums) num is: \(rt)")
+
+        return rt
+    }
+    
+    func removeDuplicates1(_ nums: inout [Int]) -> Int {
+        if nums.count < 2 {
+            return nums.count
+        }
+        
+        var rt = 0
+        
+        var tmpArr = [Int]()
+        
+        var tmp = nums[0]
+        
+        tmpArr.append(tmp)
+        
+        for i in 1..<nums.count {
+            if nums[i] > tmp {
+                //说明不同，否则至少相等，因为已经排过序
+                tmp = nums[i]
+                tmpArr.append(tmp)
+            }
+        }
+        
+        rt = tmpArr.count
+        
+        print("不同的元素数组是1：\(tmpArr)")
+        
+        return rt
+    }
+    
     func trap(_ height: [Int]) -> Int {
         var rt = 0
         
