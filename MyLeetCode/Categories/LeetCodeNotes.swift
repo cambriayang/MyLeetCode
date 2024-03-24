@@ -16,14 +16,42 @@ class LeetCodeNotes : LeetCode {
         
         let _ = solution.trap([3, 1, 2, 4])
         
-        var nums = [0,0,1,1,1,1,2,3,3]
+        var nums1 = [0,0,1,1,1,1,2,3,3]
 //        let _ = solution.removeDuplicates1(&nums)
 //        let _ = solution.removeDuplicates2(nums: &nums)
-        let _ = solution.removeDuplicates3(nums: &nums)
+        let _ = solution.removeDuplicates3(nums: &nums1)
+        
+        let nums2 = [3,2,1,0,4]
+
+        let _ = solution.canJump(nums: nums2)
     }
 }
 
 class Solution {
+    func canJump(nums: [Int]) -> Bool {
+        //rightmost表示能跳到的最远距离
+        var rightmost = 0;
+        let len = nums.count
+        
+        for i in 0..<len {
+            //首先要确保能到达的最右边是可以到达i位置，然后在次基础上更新rightmost，取max，再然后rightmost还能大于右边边界，即能到达
+            if rightmost >= i {
+                rightmost = max(rightmost, i + nums[i])
+                
+                //再然后的判断
+                if rightmost >= len - 1 {
+                    print("\(nums) 可以跳到数组最后一个元素：true")
+
+                    return true
+                }
+            }
+        }
+        
+        print("\(nums) 可以跳到数组最后一个元素：false")
+
+        return false
+    }
+    
     func removeDuplicates3(nums: inout [Int]) -> Int {
         let len = nums.count
         
