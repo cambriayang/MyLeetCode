@@ -25,11 +25,37 @@ class LeetCodeNotes : LeetCode {
         let _ = solution.canJump1(nums: nums2)
         
         let nums3 = [2,3,1,1,4]
-        let _ = solution.canJump2(nums: nums3)
+        let _ = solution.canJump3(nums: nums3)
+//        let _ = solution.canJump2(nums: nums3)
     }
 }
 
 class Solution {
+    func canJump3(nums: [Int]) -> Int {
+        let len = nums.count
+        
+        if len <= 0 {
+            return 0
+        }
+        
+        var maxPosition = 0
+        var end = 0
+        var rt = 0
+        
+        for i in 0 ..< len-1 {
+            maxPosition = max(maxPosition, i + nums[i])
+            
+            if i == end {
+                end = maxPosition
+                rt = rt + 1
+            }
+        }
+        
+        print("leet45: \(nums)的最小跳跃次数为：\(rt)")
+
+        return rt
+    }
+    
     func canJump2(nums: [Int]) -> Int {
         let len = nums.count
         
