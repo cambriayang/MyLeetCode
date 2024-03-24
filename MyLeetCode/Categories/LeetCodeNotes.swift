@@ -22,13 +22,43 @@ class LeetCodeNotes : LeetCode {
         let _ = solution.removeDuplicates3(nums: &nums1)
         
         let nums2 = [3,2,1,0,4]
-
-        let _ = solution.canJump(nums: nums2)
+        let _ = solution.canJump1(nums: nums2)
+        
+        let nums3 = [2,3,1,1,4]
+        let _ = solution.canJump2(nums: nums3)
     }
 }
 
 class Solution {
-    func canJump(nums: [Int]) -> Bool {
+    func canJump2(nums: [Int]) -> Int {
+        let len = nums.count
+        
+        if len <= 0 {
+            return 0
+        }
+        
+        //最小步数
+        var rt = 0
+        
+        var position = len - 1
+        
+        while position > 0 {
+            for i in 0 ..< position {
+                if i + nums[i] >= position {
+                    //说明能到达，更新position，同时步数也要+1，然后去找更前面一个position
+                    position = i
+                    rt = rt + 1
+                    break
+                }
+            }
+        }
+        
+        print("leet45: \(nums)的最小跳跃次数为：\(rt)")
+        
+        return rt
+    }
+    
+    func canJump1(nums: [Int]) -> Bool {
         //rightmost表示能跳到的最远距离
         var rightmost = 0;
         let len = nums.count
