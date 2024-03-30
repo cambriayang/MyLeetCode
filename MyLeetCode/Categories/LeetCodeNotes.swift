@@ -27,10 +27,60 @@ class LeetCodeNotes : LeetCode {
         let nums3 = [2,3,1,1,4]
         let _ = solution.canJump3(nums: nums3)
 //        let _ = solution.canJump2(nums: nums3)
+        
+        let c274 = [3,0,6,1,5]
+        solution.hIndex2(citations: c274)
+//        solution.hIndex1(c274)
     }
 }
 
 class Solution {
+    @discardableResult
+    func hIndex2(citations: [Int]) -> Int {
+        let n = citations.count
+        
+        var counter = [Int](repeating: 0, count: n + 1)
+        
+        //初始化counter
+        for item in citations {
+            counter[min(n, item)] += 1
+        }
+        
+        var rt = 0
+        
+        for i in stride(from: n, through: 0, by: -1) {
+            rt += counter[i]
+            
+            if rt >= i {
+                break
+            }
+        }
+        
+        print("leet274: \(citations)的h指数为：\(rt)")
+
+        return rt
+    }
+    
+    @discardableResult
+    func hIndex1(_ citations: [Int]) -> Int {
+        var rt = 0
+        
+        //排序
+        var tmp = citations
+        
+        tmp.sort()
+        
+        var i = tmp.count - 1
+
+        while i >= 0 && tmp[i] > rt {
+            rt = rt + 1
+            i = i - 1
+        }
+        
+        print("leet274: \(citations)的h指数为：\(rt)")
+        return rt
+    }
+    
     func canJump3(nums: [Int]) -> Int {
         let len = nums.count
         
