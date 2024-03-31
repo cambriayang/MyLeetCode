@@ -31,10 +31,68 @@ class LeetCodeNotes : LeetCode {
         let c274 = [3,0,6,1,5]
         solution.hIndex2(citations: c274)
 //        solution.hIndex1(c274)
+        
+        let c238 = [1,2,3,4]
+        solution.productExceptSelf2(nums: c238)
+//        solution.productExceptSelf1(nums: c238)
     }
 }
 
 class Solution {
+    @discardableResult
+    func productExceptSelf2(nums: [Int]) -> [Int] {
+        let n = nums.count
+        
+        var rv = [Int](repeating: 0, count: n)
+        
+        rv[0] = 1
+        
+        for i in stride(from: 1, to: n, by: 1) {
+            rv[i] = rv[i-1] * nums[i-1]
+        }
+        
+        var right = 1
+        
+        for j in stride(from: n-1, through: 0, by: -1) {
+            rv[j] = right * rv[j]
+            
+            right = right * nums[j]
+        }
+        
+        print("leet238: 结果为：\(rv)")
+
+        return rv
+    }
+    
+    @discardableResult
+    func productExceptSelf1(nums: [Int]) -> [Int] {
+        let n = nums.count
+        
+        var left = [Int](repeating: 0, count: n)
+        var right = [Int](repeating: 0, count: n)
+        
+        left[0] = 1
+        right[n-1] = 1
+        
+        for i in stride(from: 1, to: n, by: 1) {
+            left[i] = left[i-1] * nums[i-1]
+        }
+        
+        for j in stride(from: n-2, through: 0, by: -1) {
+            right[j] = right[j+1] * nums[j+1]
+        }
+
+        var rt = [Int](repeating: 0, count: n)
+        
+        for m in stride(from: 0, to: n, by: 1) {
+            rt[m] = left[m] * right[m]
+        }
+        
+        print("leet238: 结果为：\(rt)")
+
+        return rt
+    }
+    
     @discardableResult
     func hIndex2(citations: [Int]) -> Int {
         let n = citations.count
