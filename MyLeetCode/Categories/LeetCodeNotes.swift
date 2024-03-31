@@ -59,7 +59,7 @@ class Solution {
             right = right * nums[j]
         }
         
-        print("leet238: 结果为：\(rv)")
+        print("leet238: 结果为1：\(rv)")
 
         return rv
     }
